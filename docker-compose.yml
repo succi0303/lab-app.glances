@@ -1,0 +1,17 @@
+version: '3.9'
+services:
+    glances:
+        image: nicolargo/glances:latest
+        environment:
+            - TZ=Asia/Tokyo
+            - PGID=1000
+            - PUID=1000
+            - GLANCES_OPT=-w
+        privileged: true
+        pid: host
+        ports:
+            - '61208:61208'
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock:ro
+        restart: unless-stopped
+        container_name: glances
